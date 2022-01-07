@@ -30,3 +30,7 @@
   shell: "source /home/{{ username }}/.nvm/nvm.sh && nvm use {{ node_version }}"
   args:
     executable: "/bin/zsh"
+
+- name: "enable yarn"
+  become_user: "{{ username }}"
+  command: "corepack enable yarn"
