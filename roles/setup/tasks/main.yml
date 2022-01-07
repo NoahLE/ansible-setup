@@ -1,0 +1,18 @@
+---
+# General setup
+- import_tasks: update-system.yml
+
+# General application installation
+- import_tasks: install-packages-apt.yml
+- import_tasks: install-packages-snap.yml
+
+# Change shell to oh-my-zsh
+- import_tasks: install-oh-my-zsh.yml
+
+# Install other applications
+- import_tasks: install-pyenv.yml
+- import_tasks: install-nvm.yml
+
+# Change application settings
+- import_tasks: configure-dual-boot-clock.yml
+- import_tasks: configure-ufw.yml

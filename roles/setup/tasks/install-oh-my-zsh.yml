@@ -1,0 +1,23 @@
+---
+- name: "install dependencies"
+  apt:
+    pkg:
+      - git
+      - zsh
+
+- name: "change default shell to zsh"
+  command: "usermod --shell /usr/bin/zsh {{ username }}"
+
+- name: "download installation script"
+  get_url:
+    url: "https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh"
+    dest: "/home/{{ username }}/Downloads/oh-my-zsh.sh"
+
+- name: "run the script"
+  become_user: "{{ username }}"
+  command: "sh /home/{{ username }}/Downloads/oh-my-zsh.sh"
+
+- name: "remove the script"
+  file:
+    path: "/home/{{ username }}/Downloads/oh-my-zsh.sh"
+    state: "absent"

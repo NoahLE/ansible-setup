@@ -1,0 +1,57 @@
+---
+- name: "install pyenv dependencies"
+  apt:
+    pkg:
+      - build-essential
+      - curl
+      - make
+      - libbz2-dev
+      - libffi-dev
+      - liblzma-dev
+      - libncursesw5-dev
+      - libreadline-dev
+      - libsqlite3-dev
+      - libssl-dev
+      - libxml2-dev
+      - libxmlsec1-dev
+      - llvm
+      - tk-dev
+      - wget
+      - xz-utils
+      - zlib1g-dev
+
+- name: "clone the repo"
+  become_user: "{{ username }}"
+  git:
+    repo: "https://github.com/pyenv/pyenv.git"
+    dest: "/home/{{ username }}/.pyenv"
+
+- name: "compile bash extension - configuration"
+  become_user: "{{ username }}"
+  command:
+    chdir: "/home/{{ username }}/.pyenv/src"
+    cmd: "./configure"
+
+- name: "compile bash extension - make"
+  become_user: "{{ username }}"
+  command:
+    chdir: "/home/{{ username }}/.pyenv/"
+    cmd: "make -C src"
+
+- name: "add variables to zshrc"
+  blockinfile:
+    marker: "# {mark} Pyenv settings"
+    path: "/home/{{ username }}/.zshrc"
+    block: "{{ lookup('file', '{{ role_path }}/files/shell-env-pyenv.txt') }}"
+
+- name: "install python {{ python_version }}"
+  become_user: "{{ username }}"
+  shell: "/home/{{ username }}/.pyenv/bin/pyenv install {{ python_version }}"
+  args:
+    executable: "/bin/zsh"
+
+- name: "set python version globally"
+  become_user: "{{ username }}"
+  shell: "/home/{{ username }}/.pyenv/bin/pyenv global {{ python_version }}"
+  args:
+    executable: "/bin/zsh"

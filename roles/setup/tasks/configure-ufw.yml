@@ -1,0 +1,9 @@
+---
+- name: "enable ufw"
+  command: "ufw enable"
+
+- name: "deny incoming traffic"
+  command: "ufw default deny incoming"
+
+- name: "allow outgoing"
+  command: "ufw default allow outgoing"

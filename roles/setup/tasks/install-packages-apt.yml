@@ -1,0 +1,16 @@
+---
+- name: "install apt packages"
+  apt:
+    pkg:
+      - build-essential
+      - calibre
+      - curl
+      - git
+      - gparted
+      - guake
+      - kazam
+      - libreoffice
+      - thefuck
+      - ufw
+      - wget
+      - zeal

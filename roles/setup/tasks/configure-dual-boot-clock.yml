@@ -1,0 +1,3 @@
+---
+- name: "update clock so windows time works"
+  command: "timedatectl set-local-rtc 1"

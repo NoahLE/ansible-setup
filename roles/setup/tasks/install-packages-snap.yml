@@ -1,0 +1,25 @@
+---
+- name: "refresh snap"
+  command: snap refresh
+
+- name: "install snaps"
+  community.general.snap:
+    name:
+      - 1password
+      - chromium
+      - discord
+      - gimp
+      - inkscape
+      - ngrok
+      - postman
+      - signal-desktop
+      - vlc
+
+- name: "install classic snaps"
+  community.general.snap:
+    name:
+      - code
+      - pycharm-professional
+      - slack
+      - webstorm
+    classic: yes

@@ -1,0 +1,32 @@
+---
+- name: "download the setup script"
+  get_url:
+    url: "https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.1/install.sh"
+    dest: "/home/{{ username }}/Downloads/nvm-install.sh"
+
+- name: "run the script"
+  become_user: "{{ username }}"
+  command: "sh /home/{{ username }}/Downloads/nvm-install.sh"
+
+- name: "remove the script"
+  file:
+    path: "/home/{{ username }}/Downloads/nvm-install.sh"
+    state: "absent"
+
+- name: "add variables to zshrc"
+  blockinfile:
+    marker: "# {mark} NVM settings"
+    path: "/home/{{ username }}/.zshrc"
+    block: "{{ lookup('file', '{{ role_path }}/files/shell-env-nvm.txt') }}"
+
+- name: "install node {{ node_version }}"
+  become_user: "{{ username }}"
+  shell: "source /home/{{ username }}/.nvm/nvm.sh && nvm install {{ node_version }}"
+  args:
+    executable: "/bin/zsh"
+
+- name: "set node version globally"
+  become_user: "{{ username }}"
+  shell: "source /home/{{ username }}/.nvm/nvm.sh && nvm use {{ node_version }}"
+  args:
+    executable: "/bin/zsh"

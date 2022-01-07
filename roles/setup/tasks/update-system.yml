@@ -1,0 +1,17 @@
+---
+- name: "update package cache"
+  apt:
+    update_cache: yes
+
+- name: "install newest packages"
+  apt:
+    upgrade: full
+
+- name: "remove unused packages"
+  apt:
+    autoclean: yes
+    autoremove: yes
+
+- name: "remove dangling packages"
+  apt:
+    autoclean: yes
