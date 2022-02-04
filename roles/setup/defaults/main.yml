@@ -1,5 +1,8 @@
 ---
 username: "jinx"
 
-node_version: "17.3.0"
-python_version: "3.10.1"
+git_email: "noah@noahle.com"
+git_name: "NoahLE"
+
+node_version: "17.4.0"
+python_version: "3.10.2"

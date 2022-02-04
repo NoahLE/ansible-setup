@@ -33,4 +33,6 @@
 
 - name: "enable yarn"
   become_user: "{{ username }}"
-  command: "corepack enable yarn"
+  shell: "/home/{{ username }}/.nvm/versions/node/v{{ node_version }}/bin/corepack enable yarn"
+  args:
+    executable: "/bin/zsh"

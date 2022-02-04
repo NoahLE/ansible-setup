@@ -5,6 +5,11 @@
       - git
       - zsh
 
+- name: "remove oh-my-zsh directory if it exists"
+  file:
+    state: absent
+    path: "/home/{{ username }}/.oh-my-zsh"
+
 - name: "change default shell to zsh"
   command: "usermod --shell /usr/bin/zsh {{ username }}"
 

@@ -16,3 +16,4 @@
 # Change application settings
 - import_tasks: configure-dual-boot-clock.yml
 - import_tasks: configure-ufw.yml
+- import_tasks: configure-git.yml

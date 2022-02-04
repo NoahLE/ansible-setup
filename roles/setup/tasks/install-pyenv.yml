@@ -48,6 +48,7 @@
   become_user: "{{ username }}"
   shell: "/home/{{ username }}/.pyenv/bin/pyenv install {{ python_version }}"
   args:
+    creates: "/home/{{ username }}/.pyenv/versions/{{ python_version }}"
     executable: "/bin/zsh"
 
 - name: "set python version globally"
