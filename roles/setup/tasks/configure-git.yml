@@ -1,6 +1,12 @@
 ---
 - name: "set git email"
-  command: "/usr/bin/git config --global user.email '{{ git_email }}'"
+  become_user: "{{ username }}"
+  shell: "/usr/bin/git config --global user.email '{{ git_email }}'"
+  args:
+    executable: "/bin/zsh"
 
 - name: "set git username"
-  command: "/usr/bin/git config --global user.name '{{ git_name }}'"
+  become_user: "{{ username }}"
+  shell: "/usr/bin/git config --global user.name '{{ git_name }}'" 
+  args:
+    executable: "/bin/zsh"
