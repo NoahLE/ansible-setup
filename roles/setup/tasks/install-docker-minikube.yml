@@ -1,0 +1,59 @@
+---
+# - name: "Docker - install dependencies"
+#   apt:
+#     pkg:    
+#     - ca-certificates
+#     - curl
+#     - gnupg
+#     - lsb-release
+
+# - name: "Docker - add GPG key"
+#   become_user: "{{ username }}"
+#   shell: "curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo gpg --dearmor -o /usr/share/keyrings/docker-archive-keyring.gpg"
+#   args:
+#     executable: "/bin/zsh"
+
+# - name: "Docker - add repository"
+#   become_user: "{{ username }}"
+#   shell: |
+#     echo \
+#     "deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/docker-archive-keyring.gpg] https://download.docker.com/linux/ubuntu \
+#     $(lsb_release -cs) stable" | sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
+#   args:
+#     executable: "/bin/zsh"
+
+# - name: "Docker - update package cache"
+#   apt:
+#     update_cache: yes
+
+# - name: "Docker - install packages"
+#   apt:
+#     pkg:
+#       - docker-ce
+#       - docker-ce-cli
+#       - containerd.io
+
+- name: "Docker - create 'docker' group"
+  group:
+    name: docker
+    state: present
+
+- name: "Docker - add user to 'docker' group"
+  user:
+    name: "{{ username }}"
+    groups: docker
+    append: yes
+    
+
+# - name: "minikube - download executable"
+#   get_url:
+#     url: "https://storage.googleapis.com/minikube/releases/latest/minikube-linux-amd64"
+#     dest: "/home/{{ username }}/Downloads/minikube"
+
+# - name: "minikube - install"
+#   command: "install /home/{{ username }}/Downloads/minikube /usr/local/bin/minikube"
+
+# - name: "minikube - remove executable"
+#   file:
+#     path: "/home/{{ username }}/Downloads/minikube"
+#     state: "absent"

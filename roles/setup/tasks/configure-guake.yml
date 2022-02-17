@@ -1,0 +1,16 @@
+---
+- name: "remove default guake toggle keybind"
+  become_user: "{{ username }}"
+  shell: "gsettings set guake.keybindings.global show-hide \"'disabled'\""
+  args:
+    executable: "/bin/zsh"
+
+- name: "add toggle shortcut to ctrl + `"
+  become_user: "{{ username }}"
+  shell: |
+    gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0/ name 'Guake Toggle'
+    gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0/ command 'guake-toggle'
+    gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0/ binding '<Primary>grave'
+    gsettings set org.gnome.settings-daemon.plugins.media-keys custom-keybindings "['/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0/']"
+  args:
+    executable: "/bin/zsh"
