@@ -31,8 +31,9 @@
   args:
     executable: "/bin/zsh"
 
+# Shell may need to be reloaded if this step fails
 - name: "enable yarn"
   become_user: "{{ username }}"
-  shell: "/home/{{ username }}/.nvm/versions/node/v{{ node_version }}/bin/corepack enable yarn"
+  shell: "/source/home/{{ username }}/.zshrc && /home/{{ username }}/.nvm/versions/node/v{{ node_version }}/bin/corepack enable yarn"
   args:
     executable: "/bin/zsh"

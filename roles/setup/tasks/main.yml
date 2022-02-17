@@ -5,7 +5,7 @@
 # # General application installation
 # - import_tasks: install-packages-apt.yml
 # - import_tasks: install-packages-snap.yml
-- import_tasks: install-docker-minikube.yml
+- import_tasks: install-docker-k8s.yml
 # # Change shell to oh-my-zsh
 # - import_tasks: install-oh-my-zsh.yml
 

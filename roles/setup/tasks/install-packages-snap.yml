@@ -19,6 +19,7 @@
   community.general.snap:
     name:
       - code
+      - kubectl
       - pycharm-professional
       - slack
       - webstorm
