@@ -7,6 +7,12 @@
 
 - name: "set git username"
   become_user: "{{ username }}"
-  shell: "/usr/bin/git config --global user.name '{{ git_name }}'" 
+  shell: "/usr/bin/git config --global user.name '{{ git_name }}'"
+  args:
+    executable: "/bin/zsh"
+
+- name: "set rebase strat"
+  become_user: "{{ username }}"
+  shell: "/usr/bin/git config pull.rebase false"
   args:
     executable: "/bin/zsh"
