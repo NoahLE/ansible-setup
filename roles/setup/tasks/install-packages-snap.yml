@@ -19,6 +19,7 @@
   community.general.snap:
     name:
       - code
+      - helm
       - kubectl
       - pycharm-professional
       - slack

@@ -14,3 +14,15 @@
     gsettings set org.gnome.settings-daemon.plugins.media-keys custom-keybindings "['/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0/']"
   args:
     executable: "/bin/zsh"
+
+- name: "create the autostart folder"
+  file:
+    path: "/home/{{ username }}/.config/autostart"
+    state: directory
+
+- name: "copy the guake shortcut"
+  copy:
+    src: "{{ lookup('fileglob', '{{ role_path }}/files/guake.desktop') }}"
+    dest: "/home/{{ username }}/.config/autostart/guake.desktop"
+    owner: "{{ username }}"
+    group: "{{ username }}"
