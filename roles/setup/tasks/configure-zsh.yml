@@ -1,0 +1,6 @@
+---
+- name: "copy aliases"
+  blockinfile:
+    marker: "# {mark} {{ username }} aliases"
+    path: "/home/{{ username }}/.zshrc"
+    block: "{{ lookup('file', '{{ role_path }}/files/shell-aliases.txt') }}"
