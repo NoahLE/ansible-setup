@@ -19,3 +19,4 @@
 - import_tasks: configure-ufw.yml
 - import_tasks: configure-git.yml
 - import_tasks: configure-guake.yml
+- import_tasks: configure-zsh.yml

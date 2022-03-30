@@ -4,6 +4,8 @@
     pkg:
       - build-essential
       - calibre
+      - clamav
+      - clamav-daemon
       - curl
       - git
       - gparted
